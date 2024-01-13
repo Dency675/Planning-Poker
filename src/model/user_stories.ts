@@ -19,8 +19,8 @@ user_stories.init(
   },
   {
     sequelize,
-    modelName: "poker",
-    tableName: "poker",
+    modelName: "user_stories",
+    tableName: "user_stories",
   }
 );
 
