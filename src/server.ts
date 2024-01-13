@@ -3,13 +3,7 @@ import { sequelizeSync } from "./services/sequelize";
 import noteInformationRouter from '../src/router/note'
 
 const app = express();
-const port = 3000 || process.env.port;
-
-sequelizeSync();
-
-app.use(express.urlencoded({ extended: true })); //to accept the encoded url
-
-app.use(express.json());
+const port = 3000;
 
 app.get("/", (req, res) => {
   res.send("Hello, World hi!");

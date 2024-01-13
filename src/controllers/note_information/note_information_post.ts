@@ -38,3 +38,4 @@ const noteInformationPost = async (
 };
 
 export default noteInformationPost;
+
