@@ -12,7 +12,7 @@ NoteInformation.init(
       autoIncrement: true,
     },
     note_title: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     content: {
