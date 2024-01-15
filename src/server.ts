@@ -4,6 +4,8 @@ import noteInformationAdd from "./controllers/note_information/note_information_
 import calculations from "./model/calculations";
 import router from "./router/calculations";
 import teamInformationRouter from "../src/router/team_information"
+import estimationsRouter from "./router/estimationsRouter";
+
 
 const app = express();
 const port = 3000 || process.env.port;
@@ -16,6 +18,7 @@ app.use(express.json());
 
 app.use("/api/teamInformation", teamInformationRouter); 
 
+app.use('/estimations',estimationsRouter);
 app.get("/", (req, res) => {
   res.send("Hello, World hi!");
 });
