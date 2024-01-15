@@ -23,6 +23,7 @@ TeamInformation.init(
         sequelize, // Assuming you have a Sequelize instance already created and passed as `sequelize`
         modelName: 'TeamInformation', // The name of the model. This should be the same as the class name.
         tableName: 'team_information', // The name of the table in the database.
+        timestamps: true, // Adds createdAt and updatedAt timestamps to the model.
     }
 );
 
