@@ -1,6 +1,8 @@
 import express from "express";
 import { sequelizeSync } from "./services/sequelize";
 import noteInformationAdd from "./controllers/note_information/note_information_post";
+import estimationsRouter from "./router/estimationsRouter";
+
 
 const app = express();
 const port = 3000 || process.env.port;
@@ -11,6 +13,7 @@ app.use(express.urlencoded({ extended: true })); //to accept the encoded url
 
 app.use(express.json());
 
+app.use('/estimations',estimationsRouter);
 app.get("/", (req, res) => {
   res.send("Hello, World hi!");
 });
