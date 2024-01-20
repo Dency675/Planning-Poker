@@ -13,9 +13,10 @@ TeamInformation.init(
         team_name: {
             type: DataTypes.STRING(255),
             allowNull: false,
+            unique:true,
         },
         status: {
-            type: DataTypes.ENUM('active', 'inactive', 'pending'),
+            type: DataTypes.ENUM('active', 'inactive'),
             allowNull: false,
         },
     },

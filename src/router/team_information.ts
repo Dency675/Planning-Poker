@@ -12,11 +12,11 @@ import { getTeamInformation } from "../controllers/team_information/get_team_inf
  
 const teamInformationRouter:Router = express.Router();
 
-teamInformationRouter.post("/addTeamInformation", async(req: Request, res: Response) => {
+teamInformationRouter.post("/add", async(req: Request, res: Response) => {
     addTeamInformation(req,res);
 });
  
-teamInformationRouter.put("/editTeamInformation", async(req: Request, res: Response) => {
+teamInformationRouter.patch("/edit", async(req: Request, res: Response) => {
     editTeamInformation(req,res);
 });
 
