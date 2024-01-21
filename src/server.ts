@@ -37,6 +37,8 @@ app.use("/api/user", userinformationRouter);
 
 app.use(user_story_mapping_router);
 
+app.use(user_story_mapping_router);
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
