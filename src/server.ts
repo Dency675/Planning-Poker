@@ -6,8 +6,8 @@ import calculations from "./model/calculations";
 import teamInformationRouter from "../src/router/team_information";
 import estimationsRouter from "./router/estimationsRouter";
 import user_stories_router from "./router/user_stories";
-import router from "./router/calculations";
 import calculationsrouter from "./router/calculations";
+import router from "./router/calculations";
 import userinformationRouter from "./router/user_information";
 import user_story_mapping_router from "./router/user_story_mapping";
 
@@ -26,9 +26,6 @@ app.use("/api/teamInformation", teamInformationRouter);
 
 app.use("/estimations", estimationsRouter);
 
-app.get("/", (req, res) => {
-  res.send("Hello, World hi!");
-});
 
 app.use(user_stories_router);
 app.use("/api/calculations", calculationsrouter);
@@ -38,6 +35,7 @@ app.use("/api/user", userinformationRouter);
 app.use(user_story_mapping_router);
 
 app.use(user_story_mapping_router);
+
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
