@@ -2,14 +2,14 @@ import user_stories from "../../model/user_stories";
 import { Request, Response } from "express";
 
 /**
- * oiouiytyuiyyiuoiy
- * * uyfgh
+ *
+ *
  * @param {Request} req - Express Request object containing client data.
- * @param {Response} serveroiuyty - Express Response object for sending the server's response.
+ * @param {Response} res- Express Response object for sending the server's response.
  * @returns {Promise<void>} A JSON response indicating the success or failure of the operation.
  */
 const add_user_stories = async (req: Request, res: Response): Promise<void> => {
-  const story = req.body as { story_title: string };
+  const story = req.body as { user_story: string };
 
   try {
     if (!story) {
@@ -17,7 +17,7 @@ const add_user_stories = async (req: Request, res: Response): Promise<void> => {
     }
     const data = await user_stories.create(
       {
-        story_title: story.story_title,
+        user_story: story.user_story,
       },
       { raw: true }
     );

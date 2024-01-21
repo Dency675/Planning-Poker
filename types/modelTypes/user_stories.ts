@@ -2,7 +2,7 @@ import { Model } from "sequelize";
 
 class user_stories extends Model {
   public id!: number;
-  public story_title!: string;
+  public user_story!: Text;
 }
 
 export default user_stories;
