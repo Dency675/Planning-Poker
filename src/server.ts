@@ -9,6 +9,7 @@ import user_stories_router from "./router/user_stories";
 import calculationsrouter from "./router/calculations";
 import router from "./router/calculations";
 import userinformationRouter from "./router/user_information";
+import user_story_mapping_router from "./router/user_story_mapping";
 
 const app = express();
 const port = 3000 || process.env.port;
@@ -25,12 +26,16 @@ app.use("/api/teamInformation", teamInformationRouter);
 
 app.use("/estimations", estimationsRouter);
 
-app.use("/api/calculations", calculationsrouter);
 
 app.use(user_stories_router);
 app.use("/api/calculations", calculationsrouter);
 
 app.use("/api/user", userinformationRouter);
+
+app.use(user_story_mapping_router);
+
+app.use(user_story_mapping_router);
+
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
