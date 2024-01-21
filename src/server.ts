@@ -6,7 +6,7 @@ import calculations from "./model/calculations";
 import teamInformationRouter from "../src/router/team_information";
 import estimationsRouter from "./router/estimationsRouter";
 import user_stories_router from "./router/user_stories";
-import noteInformationAdd from "./controllers/note_information/note_information_post";
+import router from "./router/calculations";
 import calculationsrouter from "./router/calculations";
 import userinformationRouter from "./router/user_information";
 
