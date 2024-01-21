@@ -6,11 +6,20 @@ const update_user_stories = async (
   res: Response
 ): Promise<void> => {
   try {
-    const { id, story_title } = req.body;
-    if (!story_title || !id) {
+    const { id, user_story } = req.body;
+    if (!user_story || !id) {
       res.status(404).json({ error: "Bad request" });
     }
-    const data = await user_stories.update({ story_title }, { where: { id } });
+    const existingStory = await user_stories.findOne({ where: { id } });
+
+    if (!existingStory) {
+      res
+        .status(404)
+        .json({ error: "User story with the provided ID not found" });
+      return;
+    }
+
+    const data = await user_stories.update({ user_story }, { where: { id } });
     res.status(200).json({ message: "Data updated successfully" });
   } catch (error: any) {
     res.status(500).json({ error: error.toString() });
