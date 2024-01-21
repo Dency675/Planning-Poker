@@ -8,7 +8,7 @@ user_information.init(
         id: {
           type: DataTypes.UUID,
           primaryKey: true,
-          autoIncrement: true,
+          // autoIncrement: true,
         },
         name: {
           type: DataTypes.STRING(255),
