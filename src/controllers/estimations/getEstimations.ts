@@ -6,7 +6,6 @@ export const getEstimationsByID = async(req: Request, res: Response):Promise<voi
 try{
 
         const { estimation_name } = req.query;
-
         const data = await Estimations.findOne({ where: { estimation_name: estimation_name }, raw: true });
         res.status(500).json({ ...data });
 
@@ -20,8 +19,6 @@ try{
     export const getEstimations = async(req: Request, res: Response):Promise<void> => {
 
       try{
-      
-              // const { estimation_name } = req.query;
       
               const data = await Estimations.findAll({ raw: true });
               res.status(500).json({ ...data });
