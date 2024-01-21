@@ -1,12 +1,14 @@
 import Sequelize, { DataTypes } from "sequelize";
 import TeamInformation from "../../types/modelTypes/team_information";
 import sequelize from "../config/sequelize-config";
-import UserInformation from "../../types/modelTypes/user_information";
-UserInformation.init(
+
+import user_information from "../../types/modelTypes/user_information";
+user_information.init(
     {
         id: {
           type: DataTypes.UUID,
           primaryKey: true,
+          autoIncrement: true,
         },
         name: {
           type: DataTypes.STRING(255),
@@ -38,4 +40,4 @@ UserInformation.init(
     }
 );
 
-export default UserInformation;
+export default user_information;

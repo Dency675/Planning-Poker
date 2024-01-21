@@ -1,7 +1,6 @@
 import { Model, DataTypes } from 'sequelize';
-import { Sequelize } from 'sequelize/types';
 
-class UserInformation extends Model {
+class user_information extends Model {
     public id!: string;
     public name!: string;
     public email!: string;
@@ -10,4 +9,4 @@ class UserInformation extends Model {
     public last_login_time!: Date | null;
     public status!: 'active' | 'inactive' | 'pending';
 }
-export default UserInformation;
+export default user_information;

@@ -4,10 +4,11 @@ import UserInformation from "../../model/user_information";
 
 const addUserInformation = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { name, email, employee_id, join_date, last_login_time, status } = req.body;
+    const { id,name, email, employee_id, join_date, last_login_time, status } = req.body;
 
     // Create a new UserInformation record
     const userInformationAdd = await UserInformation.create({
+      id,
       name,
       email,
       employee_id,

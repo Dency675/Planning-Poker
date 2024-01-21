@@ -4,7 +4,7 @@ import UserInformation from "../../model/user_information";
 
 const editUserInformation = async (req: Request, res: Response): Promise<void> => {
   try {
-    const userId = req.params.id; // Assuming the user ID is passed as a route parameter
+    const userId = req.body; // Assuming the user ID is passed as a route parameter
     const { name, email, employee_id, join_date, last_login_time, status } = req.body;
 
     // Find the user by ID in the UserInformation table
