@@ -3,11 +3,12 @@ import { sequelizeSync } from "./services/sequelize";
 
 import noteInformationRouter from "./router/note"
 import calculations from "./model/calculations";
-import router from "./router/calculations";
 import teamInformationRouter from "../src/router/team_information";
 import estimationsRouter from "./router/estimationsRouter";
 import user_stories_router from "./router/user_stories";
-
+import router from "./router/calculations";
+import calculationsrouter from "./router/calculations";
+import userinformationRouter from "./router/user_information";
 
 const app = express();
 const port = 3000 || process.env.port;
@@ -30,8 +31,10 @@ app.get("/", (req, res) => {
 });
 
 
-app.use("/api/calculations", router);
 app.use(user_stories_router);
+app.use("/api/calculations",calculationsrouter)
+
+app.use("/api/user",userinformationRouter)
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
