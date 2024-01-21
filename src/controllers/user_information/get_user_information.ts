@@ -1,32 +1,30 @@
+import calculations from "../../model/calculations";
 import { Request, Response } from "express";
-import UserInformation from "../../model/user_information";
 
+import user_information from "../../model/user_information";
 const getUserById = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { id } = req.body; // Assuming the user ID is passed in the request body
-    
-    // Find user by ID in the UserInformation table
-      const user = await UserInformation.findOne({
-      where: { id: id }, // Assuming "e_mail" is a field in your calculations model
+    const { email } = req.body; // Assuming you're using a GET request with email as a parameter
+    const found = await user_information.findOne({
+      where: { email: email },
     });
-console.log("User:", user);
-    if (!user) {
-      res.status(404).json({
-        error: "User not found",
-      });
-      return;
-    }
 
-    res.status(200).json({
-      message: "User information retrieved successfully",
-      data: user.toJSON(),
-    });
+    if (found) {
+      res.status(200).json({
+        message: "Data retrieved successfully",
+        data: found,
+      });
+    } else {
+      res.status(404).json({
+        message: "Data not found",
+      });
+    }
   } catch (error) {
-    console.error("Error retrieving user information:", error);
+    console.error("Error in retrieving User:", error);
     res.status(500).json({
-      error: "Server Error",
+      message: "Internal Server Error",
+      error: error, // Log the entire error object
     });
   }
 };
-
 export default getUserById;
