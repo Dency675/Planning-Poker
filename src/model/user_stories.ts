@@ -12,8 +12,8 @@ user_stories.init(
       unique: true,
     },
 
-    story_title: {
-      type: DataTypes.STRING,
+    user_story: {
+      type: DataTypes.TEXT,
       allowNull: false,
     },
   },

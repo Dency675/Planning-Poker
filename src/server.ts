@@ -5,6 +5,7 @@ import calculations from "./model/calculations";
 import router from "./router/calculations";
 import teamInformationRouter from "../src/router/team_information";
 import user_stories_router from "./router/user_stories";
+import user_story_mapping_router from "./router/user_story_mapping";
 
 const app = express();
 const port = 3000 || process.env.port;
@@ -27,6 +28,8 @@ app.get("/customerProfile", (req, res) => {
 
 app.use("/api/calculations", router);
 app.use(user_stories_router);
+
+app.use(user_story_mapping_router);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
