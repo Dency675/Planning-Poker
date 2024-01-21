@@ -4,7 +4,7 @@ import { Request, Response } from "express";
 // Function for retrieving calculations
 const get_calculations = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { id } = req.body;
+    const { id } = req.query;
     const found = await calculations.findOne({
       where: { id: id }, // Assuming "e_mail" is a field in your calculations model
     });
@@ -22,7 +22,7 @@ const get_calculations = async (req: Request, res: Response): Promise<void> => {
     }
   } catch (error) {
     console.error("Error in calculationsGet:", error);
-    res.status(500).json({
+    res.status(500).json({  
       message: "Internal Server Error",
     });
   }
