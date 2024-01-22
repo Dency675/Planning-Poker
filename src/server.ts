@@ -11,13 +11,13 @@ import calculationsrouter from "./router/calculations";
 import router from "./router/calculations";
 import userinformationRouter from "./router/user_information";
 import user_story_mapping_router from "./router/user_story_mapping";
+import participant_scores_router from "./router/participant_scores";
 
 import sequelize from "./config/sequelize-config";
 import TeamInformation from "./model/team_information";
 import Session from "./model/sessions";
 import associations from "../src/model/associations.ts";
-import role_router from "../src/router/role"
-
+import role_router from "../src/router/role";
 
 const app = express();
 const port = 3000 || process.env.port;
@@ -46,8 +46,8 @@ app.use(user_story_mapping_router);
 
 app.use(user_story_mapping_router);
 
-
 app.use(role_router);
+app.use(participant_scores_router);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

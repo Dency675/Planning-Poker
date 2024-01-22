@@ -24,11 +24,10 @@ user_story_session_mapping.init(
     round_number: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      unique: true,
     },
     comment: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      allowNull: true,
     },
     story_point_result: {
       type: DataTypes.INTEGER,
