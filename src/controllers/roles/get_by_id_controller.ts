@@ -2,11 +2,12 @@ import express from 'express';
 import { Request, Response, Router } from 'express';
 import roles from "../../model/role_model";
 
-export const getRole = async (req:Request,res:Response) => {
+export const getRoleByID = async (req:Request,res:Response) => {
     try{
         const role_id = req.query.id;
 
-        const value = await roles.findAll();
+        const value = await roles.findOne({ 
+            where:{ id: role_id } });
             if(value){
                 res.status(200).json(value);
             }
