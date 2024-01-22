@@ -6,6 +6,7 @@ import noteInformationPut from "../controllers/note_information/note_information
 import noteInformationGetById from "../controllers/note_information/note_information_getbyId";
 import noteInformationSearch from "../controllers/note_information/note_information_search";
 import noteInformationSort from "../controllers/note_information/note_information_sort";
+import noteInformationDelete from "../controllers/note_information/note_information_delete";
 
 const router = express.Router();
 
@@ -31,6 +32,10 @@ router.put("/noteInformationSearch", (req: Request, res: Response) => {
 
 router.put("/noteInformationSort", (req: Request, res: Response) => {
   noteInformationSort(req, res);
+});
+
+router.delete("/noteInformationDelete", (req: Request, res: Response) => {
+  noteInformationDelete(req, res);
 });
 
 export default router;
