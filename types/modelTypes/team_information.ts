@@ -1,6 +1,6 @@
 import { Model } from 'sequelize';
  
-class TeamInformation extends Model {
+class team_information extends Model {
     public id!: number;
     public team_name!: string;
     public status!: 'active' | 'inactive';
@@ -8,4 +8,4 @@ class TeamInformation extends Model {
     public readonly updatedAt!: Date;
 }
 
-export default TeamInformation;
+export default team_information;

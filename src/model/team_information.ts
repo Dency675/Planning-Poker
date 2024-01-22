@@ -1,8 +1,8 @@
 import Sequelize, { DataTypes } from "sequelize";
-import TeamInformation from "../../types/modelTypes/team_information";
+import team_information from "../../types/modelTypes/team_information";
 import sequelize from "../config/sequelize-config";
-
-TeamInformation.init(
+ 
+team_information.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -20,13 +20,12 @@ TeamInformation.init(
             allowNull: false,
         },
     },
-   
-  {
-    sequelize,
-    modelName: "TeamInformation",
-    tableName: "team_information",
-    timestamps: true,
-  }
+    {
+        sequelize, // Assuming you have a Sequelize instance already created and passed as `sequelize`
+        modelName: 'team_information', // The name of the model. This should be the same as the class name.
+        tableName: 'team_information', // The name of the table in the database.
+        timestamps: true, // Adds createdAt and updatedAt timestamps to the model.
+    }
 );
 
-export default TeamInformation;
+export default team_information;
