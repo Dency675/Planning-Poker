@@ -7,11 +7,19 @@ const noteInformationDelete = async (
 ): Promise<void> => {
   try {
     const { id } = req.query;
-    const found = await NoteInformation.destroy({
+
+    if (!id) {
+      res.status(422).json({
+        error: "note_id is missing ",
+      });
+      return;
+    }
+
+    const responseData = await NoteInformation.destroy({
       where: { id: id },
     });
 
-    console.log(found);
+    console.log(responseData);
     res.status(200).json({ message: `successfully deleted ${id}` });
   } catch (error) {
     console.error("Error in noteInformationGet:", error);

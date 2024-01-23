@@ -7,13 +7,21 @@ const noteInformationGetById = async (
 ): Promise<void> => {
   try {
     const { id } = req.query;
-    const found = await NoteInformation.findAll({
+
+    if (!id) {
+      res.status(422).json({
+        error: "note_id is missing ",
+      });
+      return;
+    }
+
+    const responseData = await NoteInformation.findAll({
       raw: true,
       where: { id },
     });
 
-    console.log(found);
-    res.status(200).json({ message: found });
+    console.log(responseData);
+    res.status(200).json({ message: responseData });
   } catch (error) {
     console.error("Error in noteInformationGet:", error);
     res.status(500).json({ message: "Internal Server Error" });

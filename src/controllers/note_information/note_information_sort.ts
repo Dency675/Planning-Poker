@@ -12,18 +12,15 @@ const noteInformationSort = async (
       sortOrder: string;
     };
 
-    // Validate sortBy parameter
     if (!sortBy || (sortBy !== "note_title" && sortBy !== "createdAt")) {
       return res.status(400).json({ message: "Invalid sortBy parameter" });
     }
 
-    // Validate sortOrder parameter
     const validSortOrders = ["asc", "desc"];
     if (!sortOrder || !validSortOrders.includes(sortOrder)) {
       return res.status(400).json({ message: "Invalid sortOrder parameter" });
     }
 
-    // Build the order array dynamically
     const order: OrderItem[] = [[sortBy, sortOrder]];
 
     const results = await NoteInformation.findAll({

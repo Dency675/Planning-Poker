@@ -1,11 +1,11 @@
-import { DataTypes, Model, Optional } from "sequelize";
+import { DataTypes, Sequelize } from "sequelize";
 import sequelize from "../config/sequelize-config";
 import Session from "../../types/modelTypes/sessions";
 
-import TeamInformation from "../../types/modelTypes/team_information";
-import User from "../../types/modelTypes/user_information";
-import Estimation from "../../types/modelTypes/estimations";
-import Calculation from "../../types/modelTypes/calculations";
+import TeamInformation from "./team_information";
+import UserInformation from "./user_information";
+import Estimations from "./estimations";
+import calculations from "./calculations";
 
 Session.init(
   {
@@ -34,22 +34,48 @@ Session.init(
     team_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: "team_information",
+        key: "id",
+      },
     },
     scrum_master_id: {
       type: DataTypes.UUID,
       allowNull: false,
+      references: {
+        model: "user_information",
+        key: "id",
+      },
     },
     estimation_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: "estimations",
+        key: "id",
+      },
     },
     calculation_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: "calculations",
+        key: "id",
+      },
     },
     status: {
       type: DataTypes.ENUM("active", "completed"),
       allowNull: false,
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
     },
   },
   {
@@ -60,31 +86,28 @@ Session.init(
   }
 );
 
-// Session.belongsTo(TeamInformation, { foreignKey: "team_id", targetKey: "id" });
+TeamInformation.hasMany(Session, { foreignKey: "team_id" });
+Session.belongsTo(TeamInformation, {
+  foreignKey: "team_id",
+  targetKey: "id",
+});
 
-// Session.associate = function (models: any): void {
-//   Session.belongsTo(models.TeamInformation, {
-//     foreignKey: "team_id",
-//     targetKey: "id",
-//   });
+UserInformation.hasMany(Session, { foreignKey: "scrum_master_id" });
+Session.belongsTo(UserInformation, {
+  foreignKey: "scrum_master_id",
+  targetKey: "id",
+});
 
-//   Session.belongsTo(models.User, {
-//     foreignKey: "scrum_master_id",
-//     targetKey: "id",
-//   });
+Estimations.hasMany(Session, { foreignKey: "estimation_id" });
+Session.belongsTo(Estimations, {
+  foreignKey: "estimation_id",
+  targetKey: "id",
+});
 
-//   // ... Add other associations here
-// };
-
-// TeamInformation.hasMany(Session, { foreignKey: "team_id", sourceKey: "id" });
-
-// Session.belongsTo(User, { foreignKey: "scrum_master_id" });
-// User.hasMany(Session, { foreignKey: "scrum_master_id" });
-
-// Session.belongsTo(Estimation, { foreignKey: "estimation_id" });
-// Estimation.hasOne(Session, { foreignKey: "estimation_id" });
-
-// Session.belongsTo(Calculation, { foreignKey: "calculation_id" });
-// Calculation.hasOne(Session, { foreignKey: "calculation_id" });
+calculations.hasMany(Session, { foreignKey: "calculation_id" });
+Session.belongsTo(calculations, {
+  foreignKey: "calculation_id",
+  targetKey: "id",
+});
 
 export default Session;
