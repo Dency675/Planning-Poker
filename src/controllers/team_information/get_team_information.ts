@@ -10,7 +10,6 @@ import TeamInformation from '../../model/team_information'
  */
 
 // GET /team-information
-// app.get('/team-information', 
 
 const getAllTeamInformation = async (req:Request, res:Response) => {
     try {
@@ -21,12 +20,13 @@ const getAllTeamInformation = async (req:Request, res:Response) => {
     }
   };
   
-  // GET /team-information/:id
-//   app.get('/team-information/:id',
+
   const getTeamInformation = async (req:Request, res:Response) => {
     try {
-      const { id } = req.params;
-      const teamInfo = await TeamInformation.findByPk(id);
+      const id  = req.query.id;
+      const teamInfo= await TeamInformation.findOne({
+        where: { id: id }, 
+      });
       if (!teamInfo) {
         res.status(404).json({ message: 'Team information not found' });
       } else {

@@ -1,4 +1,4 @@
-import Sequelize, { DataTypes } from "sequelize";
+import  { DataTypes } from "sequelize";
 import TeamInformation from "../../types/modelTypes/team_information";
 import sequelize from "../config/sequelize-config";
 
@@ -8,6 +8,7 @@ user_information.init(
         id: {
           type: DataTypes.UUID,
           primaryKey: true,
+          //autoIncrement: true,
         },
         name: {
           type: DataTypes.STRING(255),
