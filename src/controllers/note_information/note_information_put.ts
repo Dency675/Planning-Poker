@@ -9,6 +9,13 @@ const noteInformationPut = async (
     const { note_id, new_content } = req.body;
     console.log(note_id);
 
+    if (!note_id || !new_content) {
+      res.status(422).json({
+        error: "note_id or content is missing ",
+      });
+      return;
+    }
+
     const updatedNote = await NoteInformation.update(
       { content: new_content },
       {

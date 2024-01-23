@@ -1,17 +1,24 @@
 import { Request, Response } from "express";
-import { Op } from "sequelize"; // Import Op from Sequelize
-import NoteInformation from "../../model/note_information"; // Adjust the path accordingly
-
+import { Op } from "sequelize";
+import NoteInformation from "../../model/note_information";
 const noteInformationSearch = async (
   req: Request,
   res: Response
 ): Promise<void> => {
   try {
     const { note_title } = req.query;
+
+    if (!note_title) {
+      res.status(422).json({
+        error: "note_title is missing ",
+      });
+      return;
+    }
+
     const results = await NoteInformation.findAll({
       where: {
         note_title: {
-          [Op.like]: `%${note_title}%`, // Use Op.like instead of Sequelize.Op.like
+          [Op.like]: `%${note_title}%`,
         },
       },
     });

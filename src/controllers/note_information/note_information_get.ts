@@ -6,12 +6,12 @@ const noteInformationGet = async (
   res: Response
 ): Promise<void> => {
   try {
-    const found = await NoteInformation.findAll({
+    const responseData = await NoteInformation.findAll({
       raw: true,
     });
 
-    console.log(found);
-    res.status(200).json({ message: found });
+    console.log(responseData);
+    res.status(200).json({ message: responseData });
   } catch (error) {
     console.error("Error in noteInformationGet:", error);
     res.status(500).json({ message: "Internal Server Error" });

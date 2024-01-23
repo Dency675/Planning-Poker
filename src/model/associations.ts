@@ -8,29 +8,6 @@ import user_stories from "./user_stories";
 import participant_scores from "./participant_scores";
 
 const associations = async () => {
-  TeamInformation.hasMany(Session, { foreignKey: "team_id" });
-  Session.belongsTo(TeamInformation, {
-    foreignKey: "team_id",
-    targetKey: "id",
-  });
-
-  UserInformation.hasMany(Session, { foreignKey: "scrum_master_id" });
-  Session.belongsTo(UserInformation, {
-    foreignKey: "scrum_master_id",
-    targetKey: "id",
-  });
-
-  Estimations.hasMany(Session, { foreignKey: "estimation_id" });
-  Session.belongsTo(Estimations, {
-    foreignKey: "estimation_id",
-    targetKey: "id",
-  });
-
-  calculations.hasMany(Session, { foreignKey: "calculation_id" });
-  Session.belongsTo(calculations, {
-    foreignKey: "calculation_id",
-    targetKey: "id",
-  });
 
   user_stories.hasMany(user_story_session_mapping, {
     foreignKey: "user_story_id",
