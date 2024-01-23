@@ -8,6 +8,7 @@ import user_stories from "./user_stories";
 import participant_scores from "./participant_scores";
 
 
+
 const associations = async () => {
 
   user_stories.hasMany(user_story_session_mapping, {
