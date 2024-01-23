@@ -7,6 +7,8 @@ import user_story_session_mapping from "./user_story_session_mapping";
 import user_stories from "./user_stories";
 import participant_scores from "./participant_scores";
 
+
+
 const associations = async () => {
 
   user_stories.hasMany(user_story_session_mapping, {
@@ -40,6 +42,8 @@ const associations = async () => {
     foreignKey: "user_story_session_mapping_id",
     targetKey: "id",
   });
+
+
 };
 
 export default associations;
