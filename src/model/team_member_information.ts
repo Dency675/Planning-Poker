@@ -2,8 +2,8 @@ import { DataTypes } from "sequelize";
 import sequelize from "../config/sequelize-config";
 import team_member_information from "../../types/modelTypes/team_member_information";
 
-import user_information from "./user_information";
 import team_information from "./team_information";
+import user_information from "./user_information";
 import roles from "./role_model";
 
 team_member_information.init(
@@ -66,14 +66,5 @@ roles.hasMany(team_member_information, {
 });
 team_member_information.belongsTo(roles);
 
-user_information.belongsToMany(team_information, {
-  through: "team_member_information",
-  foreignKey: "userId",
-});
-
-team_information.belongsToMany(user_information, {
-  through: "team_member_information",
-  foreignKey: "teamId",
-});
 
 export default team_member_information;

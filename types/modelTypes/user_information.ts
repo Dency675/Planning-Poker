@@ -8,5 +8,6 @@ class user_information extends Model {
     public join_date!: Date;
     public last_login_time!: Date | null;
     public status!: 'active' | 'inactive' | 'pending';
+  team_name: any;
 }
 export default user_information;
