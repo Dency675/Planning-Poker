@@ -4,6 +4,7 @@ import Session from "./sessions";
 import Estimations from "./estimations";
 import calculations from "./calculations";
 
+
 const associations = async () => {
   TeamInformation.hasMany(Session, { foreignKey: "team_id" });
   Session.belongsTo(TeamInformation, {
@@ -28,6 +29,8 @@ const associations = async () => {
     foreignKey: "calculation_id",
     targetKey: "id",
   });
+
+
 };
 
 export default associations;

@@ -12,7 +12,7 @@ export const sequelizeSync = async (): Promise<void> => {
     });
 
   await sequelize
-    .sync({ force: true }) // Set force to true to drop and recreate tables on every application start
+    .sync({ force: false }) // Set force to true to drop and recreate tables on every application start
     .then(() => {
       console.log("Database synced");
     })
