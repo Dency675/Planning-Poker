@@ -9,6 +9,8 @@ import user_stories_router from "./router/user_stories";
 import router from "./router/calculations";
 import calculationsrouter from "./router/calculations";
 import userinformationRouter from "./router/user_information";
+import scalesRouter from "./router/scalesRouter";
+// import participantScoreRouter from "./router/participantScoreRouter";
 
 const app = express();
 const port = 3000 || process.env.port;
@@ -25,6 +27,8 @@ app.use("/note", noteInformationRouter);
 app.use("/api/teamInformation", teamInformationRouter);
 
 app.use('/estimations',estimationsRouter);
+app.use('/scales',scalesRouter);
+// app.use('/participantScore',participantScoreRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello, World hi!");

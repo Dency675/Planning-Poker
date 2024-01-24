@@ -5,7 +5,11 @@ export const putEstimations = async(req: Request, res: Response):Promise<void> =
 
 try{
     const { id,estimation_name } = req.body;
-    console.log(estimation_name);
+    
+    if (!id||!estimation_name) {
+      res.status(422).json({error: "Missing Values "});
+      return;
+    }
    
     const found = await Estimations.update(
           {
