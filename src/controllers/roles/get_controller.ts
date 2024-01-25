@@ -4,7 +4,6 @@ import roles from "../../model/role_model";
 
 export const getRole = async (req:Request,res:Response) => {
     try{
-        const role_id = req.query.id;
 
         const value = await roles.findAll();
             if(value){
