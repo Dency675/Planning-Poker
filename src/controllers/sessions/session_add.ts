@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import Session from "../../model/sessions";
 
+import SessionParticipants from "../../model/session_participants"
+
 interface SessionPostResponse {
   message: string;
   data: Session;
@@ -46,6 +48,10 @@ const SessionPost = async (
       estimation_id,
       calculation_id,
       status,
+    });
+
+    const data = await SessionParticipants.findAll({
+      raw: true,
     });
 
     const responseData: SessionPostResponse = {
