@@ -15,37 +15,6 @@ class Session extends Model {
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 
-  // Session.associate = async (models)=> {
-  //   Session.belongsTo(models.TeamInformation, {
-  //     foreignKey: "team_id",
-  //     targetKey: "id",
-  //   });
-
-  //   Session.belongsTo(models.User, {
-  //     foreignKey: "scrum_master_id",
-  //     targetKey: "id",
-  //   });
-
-  //   // ... Add other associations here
-  // };
-
-  // static associate = async (models: Record<string, typeof Model>) => {
-  //   const {
-  //     TeamInformation,
-  //     UserStoryMapping,
-  //     UserStory,
-  //     User,
-  //     Calculation,
-  //     Estimation,
-  //   } = models;
-
-  //   this.belongsTo(TeamInformation, {
-  //     foreignKey: "team_id",
-  //     targetKey: "id",
-  //   });
-
-  //   TeamInformation.hasMany(this, { foreignKey: "team_id", sourceKey: "id" });
-  // };
 }
 
 export default Session;
