@@ -2,8 +2,8 @@ import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/sequelize-config";
 import Session from "./sessions";
 import UserInformation from "./user_information";
+import SessionParticipants from "../../types/modelTypes/session_participants"
 
-class SessionParticipants extends Model {}
 
 SessionParticipants.init(
   {
@@ -41,7 +41,7 @@ SessionParticipants.init(
 );
 
 SessionParticipants.belongsTo(Session, { foreignKey: "session_id",targetKey: "id" });
-Session.hasMany(SessionParticipants, { foreignKey: "session_id" });
+Session.hasMany(SessionParticipants, { foreignKey: "session_id" ,as:"participants"});
 
 SessionParticipants.belongsTo(UserInformation, { foreignKey: "user_id" ,targetKey: "id"});
 UserInformation.hasMany(SessionParticipants, { foreignKey: "user_id" });

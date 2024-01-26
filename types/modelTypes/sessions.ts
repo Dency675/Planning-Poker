@@ -1,6 +1,7 @@
 import { Model } from "sequelize";
 import TeamInformation from "../../types/modelTypes/team_information";
 class Session extends Model {
+  [x: string]: any;
   public id!: number;
   public session_title!: string;
   public create_date_time!: Date;

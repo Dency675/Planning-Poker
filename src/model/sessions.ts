@@ -90,12 +90,14 @@ TeamInformation.hasMany(Session, { foreignKey: "team_id" });
 Session.belongsTo(TeamInformation, {
   foreignKey: "team_id",
   targetKey: "id",
+  as :'team'
 });
 
 UserInformation.hasMany(Session, { foreignKey: "scrum_master_id" });
 Session.belongsTo(UserInformation, {
   foreignKey: "scrum_master_id",
   targetKey: "id",
+  as :'scrumMaster'
 });
 
 Estimations.hasMany(Session, { foreignKey: "estimation_id" });
