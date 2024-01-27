@@ -6,6 +6,10 @@ import { deleteEstimations }from '../controllers/estimations/deleteEstimations'
 import { searchEstimations } from "../controllers/estimations/searchEstimations";
 import { searchTeams } from "../controllers/team_information/searchTeams";
 import { searchUser } from "../controllers/user_information/searchUser";
+import { uploadEstimations } from "../controllers/estimations/addEstimations";
+import multer from 'multer';
+
+const upload = multer({ dest: 'uploads/' });
 
 const router:Router = express.Router();
 router.post("/postEstimations", async(req: Request, res: Response) => {
@@ -38,6 +42,10 @@ router.get("/searchTeams", async(req: Request, res: Response) => {
 
 router.get("/searchUser", async(req: Request, res: Response) => {
     searchUser(req,res);
+});
+
+router.post("/addEstimations",upload.single('csvFile'), async(req: Request, res: Response) => {
+    uploadEstimations(req,res);
 });
 
 export default router;
