@@ -8,6 +8,12 @@ export const searchEstimations = async (
   ): Promise<void> => {
     try {
       const { search } = req.query;
+
+      if (!search) {
+        res.status(422).json({error: "Missing Values "});
+        return;
+      }
+
       const results = await Estimations.findAll({
         where: {
           estimation_name: {

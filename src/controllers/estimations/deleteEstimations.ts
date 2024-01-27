@@ -5,6 +5,11 @@ export const deleteEstimations = async (req: Request, res: Response): Promise<vo
   try {
     const { id } = req.body;
 
+    if (!id) {
+      res.status(422).json({error: "Missing Estimation ID "});
+      return;
+    }
+
     const deletedCount = await Estimations.destroy({
       where: { id: id }
     });

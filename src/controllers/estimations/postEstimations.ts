@@ -7,6 +7,11 @@ try{
     const { estimation_name } = req.body;
     console.log(estimation_name);
    
+    if (!estimation_name) {
+      res.status(422).json({error: "Missing Estimation Name "});
+      return;
+    }
+
     const found = await Estimations.create(
           {
             estimation_name:estimation_name,

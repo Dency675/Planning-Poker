@@ -13,11 +13,22 @@ Estimations.init({
     type: DataTypes.STRING,
     allowNull: false,
   },
+  created_at: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue:Sequelize.literal('CURRENT_TIMESTAMP'),
+  },
+  updated_at: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue:Sequelize.literal('CURRENT_TIMESTAMP'),
+  },
 },
 {
     sequelize,
     modelName:'estimations',
     tableName:'estimations',
+    underscored: true,
 });
 
 export default Estimations;
