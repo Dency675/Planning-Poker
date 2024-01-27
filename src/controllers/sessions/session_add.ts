@@ -50,10 +50,6 @@ const SessionPost = async (
       status,
     });
 
-    const data = await SessionParticipants.findAll({
-      raw: true,
-    });
-
     const responseData: SessionPostResponse = {
       message: "Session created successfully",
       data: newSession,

@@ -1,6 +1,7 @@
 import { Model } from 'sequelize';
 
     class SessionParticipants extends Model {
+  [x: string]: any;
 
   public id!: number;
   public session_id!: number;

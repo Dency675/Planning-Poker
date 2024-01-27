@@ -43,7 +43,7 @@ SessionParticipants.init(
 SessionParticipants.belongsTo(Session, { foreignKey: "session_id",targetKey: "id" });
 Session.hasMany(SessionParticipants, { foreignKey: "session_id" ,as:"participants"});
 
-SessionParticipants.belongsTo(UserInformation, { foreignKey: "user_id" ,targetKey: "id"});
+SessionParticipants.belongsTo(UserInformation, { foreignKey: "user_id" ,targetKey: "id",as:"user"});
 UserInformation.hasMany(SessionParticipants, { foreignKey: "user_id" });
 
 export default SessionParticipants;
