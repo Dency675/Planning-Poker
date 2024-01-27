@@ -6,7 +6,16 @@ import user_information from '../../model/user_information';
 
 export const searchTeams = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { search } = req.query;
+    let { search } = req.query; 
+
+    if (typeof search === 'string') {
+      search = search.trim();
+    }
+
+    if (!search) {
+      res.status(422).json({error: "Missing Search parameter "});
+      return;
+    }
 
     // Search for users by name
     const userResults = await user_information.findAll({

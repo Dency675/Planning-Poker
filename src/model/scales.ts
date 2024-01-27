@@ -42,6 +42,7 @@ Scales.init({
     sequelize,
     modelName:'scales',
     tableName:'scales',
+    underscored: true,
 });
 
 Scales.belongsTo(Estimations, { foreignKey: 'estimation_id',
