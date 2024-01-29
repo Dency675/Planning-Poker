@@ -14,9 +14,9 @@ const noteInformationPost = async (
   res: Response
 ): Promise<void> => {
   try {
-    const { note_title, content } = req.body;
+    const { noteTitle, content } = req.body;
 
-    if (!note_title || !content) {
+    if (!noteTitle || !content) {
       res.status(422).json({
         error: "note_title or content is missing ",
       });
@@ -24,7 +24,7 @@ const noteInformationPost = async (
     }
 
     const createdNote = await NoteInformation.create({
-      note_title: note_title,
+      noteTitle: noteTitle,
       content: content,
     });
 
@@ -38,4 +38,3 @@ const noteInformationPost = async (
 };
 
 export default noteInformationPost;
-

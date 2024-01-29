@@ -33,7 +33,10 @@ const SessionPost = async (
       !calculation_id ||
       !status
     ) {
-      return res.status(400).json({ message: "Missing required fields" });
+      return res
+        .status(400)
+        .send("data missing")
+        .json({ message: "Missing required fields" });
     }
 
     const newSession = await Session.create({

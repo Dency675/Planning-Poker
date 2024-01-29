@@ -12,7 +12,7 @@ const noteInformationSort = async (
       sortOrder: string;
     };
 
-    if (!sortBy || (sortBy !== "note_title" && sortBy !== "createdAt")) {
+    if (!sortBy || (sortBy !== "noteTitle" && sortBy !== "createdAt")) {
       return res.status(400).json({ message: "Invalid sortBy parameter" });
     }
 

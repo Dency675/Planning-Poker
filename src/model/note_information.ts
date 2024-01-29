@@ -11,7 +11,7 @@ NoteInformation.init(
       unique: true,
       autoIncrement: true,
     },
-    note_title: {
+    noteTitle: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
@@ -32,8 +32,9 @@ NoteInformation.init(
   },
   {
     sequelize,
-    modelName: "note_information",
-    tableName: "note_information",
+    modelName: "noteInformation",
+    tableName: "noteInformation",
+    underscored: true,
   }
 );
 

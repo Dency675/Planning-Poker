@@ -6,9 +6,9 @@ const noteInformationSearch = async (
   res: Response
 ): Promise<void> => {
   try {
-    const { note_title } = req.query;
+    const { noteTitle } = req.query;
 
-    if (!note_title) {
+    if (!noteTitle) {
       res.status(422).json({
         error: "note_title is missing ",
       });
@@ -17,8 +17,8 @@ const noteInformationSearch = async (
 
     const results = await NoteInformation.findAll({
       where: {
-        note_title: {
-          [Op.like]: `%${note_title}%`,
+        noteTitle: {
+          [Op.like]: `%${noteTitle}%`,
         },
       },
     });

@@ -15,11 +15,11 @@ Session.init(
       primaryKey: true,
       allowNull: false,
     },
-    session_title: {
+    sessionTitle: {
       type: DataTypes.STRING(255),
       allowNull: false,
     },
-    create_date_time: {
+    createDateTime: {
       type: DataTypes.DATE,
       allowNull: false,
     },
@@ -27,11 +27,11 @@ Session.init(
       type: DataTypes.TIME,
       allowNull: true,
     },
-    excel_link: {
+    excelLink: {
       type: DataTypes.STRING(255),
       allowNull: false,
     },
-    team_id: {
+    teamId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -39,7 +39,7 @@ Session.init(
         key: "id",
       },
     },
-    scrum_master_id: {
+    scrumMasterId: {
       type: DataTypes.UUID,
       allowNull: false,
       references: {
@@ -47,7 +47,7 @@ Session.init(
         key: "id",
       },
     },
-    estimation_id: {
+    estimationId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -55,7 +55,7 @@ Session.init(
         key: "id",
       },
     },
-    calculation_id: {
+    calculationId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -83,30 +83,30 @@ Session.init(
     modelName: "Session",
     tableName: "sessions",
     timestamps: true,
+    underscored: true,
   }
 );
 
-TeamInformation.hasMany(Session, { foreignKey: "team_id" });
+TeamInformation.hasMany(Session, { foreignKey: "teamId" });
 Session.belongsTo(TeamInformation, {
-  foreignKey: "team_id",
+  foreignKey: "teamId",
   targetKey: "id",
 });
 
-UserInformation.hasMany(Session, { foreignKey: "scrum_master_id" });
 Session.belongsTo(UserInformation, {
-  foreignKey: "scrum_master_id",
+  foreignKey: "scrumMasterId",
   targetKey: "id",
 });
 
-Estimations.hasMany(Session, { foreignKey: "estimation_id" });
+Estimations.hasMany(Session, { foreignKey: "estimationId" });
 Session.belongsTo(Estimations, {
-  foreignKey: "estimation_id",
+  foreignKey: "estimationId",
   targetKey: "id",
 });
 
-calculations.hasMany(Session, { foreignKey: "calculation_id" });
+calculations.hasMany(Session, { foreignKey: "calculationId" });
 Session.belongsTo(calculations, {
-  foreignKey: "calculation_id",
+  foreignKey: "calculationId",
   targetKey: "id",
 });
 
