@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import Session from "../../model/sessions";
 
+import SessionParticipants from "../../model/session_participants"
+
 interface SessionPostResponse {
   message: string;
   data: Session;

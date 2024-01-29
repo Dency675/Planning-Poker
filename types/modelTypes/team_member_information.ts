@@ -10,6 +10,8 @@ class team_member_information extends Model {
     // timestamps!
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
+  team_name: any;
+  team_information: any;
   }
 
   export default team_member_information;

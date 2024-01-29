@@ -91,11 +91,13 @@ TeamInformation.hasMany(Session, { foreignKey: "teamId" });
 Session.belongsTo(TeamInformation, {
   foreignKey: "teamId",
   targetKey: "id",
+  as :'team'
 });
 
 Session.belongsTo(UserInformation, {
   foreignKey: "scrumMasterId",
   targetKey: "id",
+  as :'scrumMaster'
 });
 
 Estimations.hasMany(Session, { foreignKey: "estimationId" });

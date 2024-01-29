@@ -2,8 +2,8 @@ import { DataTypes } from "sequelize";
 import sequelize from "../config/sequelize-config";
 import team_member_information from "../../types/modelTypes/team_member_information";
 
-import user_information from "./user_information";
 import team_information from "./team_information";
+import user_information from "./user_information";
 import roles from "./role_model";
 
 team_member_information.init(
@@ -49,31 +49,22 @@ team_member_information.init(
   }
 );
 
-user_information.hasOne(team_member_information, {
-  foreignKey: "userId",
-  as: "userTeamMember",
-});
-team_member_information.belongsTo(user_information);
+team_information.hasMany(team_member_information, { foreignKey: "teamId" });
+  team_member_information.belongsTo(team_information, {
+    foreignKey: "teamId",
+    targetKey: "id",
+  });
 
-team_information.hasOne(team_member_information, {
-  foreignKey: "teamId",
-  as: "teamTeamMember",
-});
-team_member_information.belongsTo(team_information);
+  user_information.hasMany(team_member_information, { foreignKey: "userId" });
+  team_member_information.belongsTo(user_information, {
+    foreignKey: "userId",
+    targetKey: "id",
+  });
 
-roles.hasMany(team_member_information, {
-  foreignKey: "roleId",
-});
-team_member_information.belongsTo(roles);
-
-user_information.belongsToMany(team_information, {
-  through: "team_member_information",
-  foreignKey: "userId",
-});
-
-team_information.belongsToMany(user_information, {
-  through: "team_member_information",
-  foreignKey: "teamId",
-});
+  roles.hasMany(team_member_information, { foreignKey: "roleId" });
+  team_member_information.belongsTo(roles, {
+    foreignKey: "roleId",
+    targetKey: "id",
+  });
 
 export default team_member_information;
