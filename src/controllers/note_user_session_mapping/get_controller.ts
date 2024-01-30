@@ -5,6 +5,8 @@ note_associations();
 //const results = await MainModel.findAll({ include: [ JoinedModel ] }) as Array<MainModel & {JoinedModel: JoinedModel}>;
 import note_user_session_mapping from '../../model/note_user_session_mapping_Model';
 import NoteInformation from '../../model/note_information';
+
+console.log("p");
 // import session_participants from '../../model/session_participants';
 
 // export const getNoteUserMapping = async (req:Request,res:Response) => {
