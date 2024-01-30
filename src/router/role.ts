@@ -1,6 +1,5 @@
 import express from 'express';
 import { Request, Response, Router } from 'express';
-import roles from '../model/role_model';
 import { postRole } from '../controllers/roles/post_controller';
 import { getRoleByID } from '../controllers/roles/get_by_id_controller';
 import { putRole } from '../controllers/roles/put_controller';
