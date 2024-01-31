@@ -5,7 +5,16 @@ import user_information from '../../model/user_information';
 
 export const searchUser = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { offset, search } = req.query;
+    let { offset, search } = req.query;
+
+    if (typeof search === 'string') {
+      search = search.trim();
+    }
+
+    if (!search) {
+      res.status(422).json({error: "Missing Search parameter "});
+      return;
+    }
 
     let skip: number = 0;
     if (offset) {

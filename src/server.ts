@@ -18,6 +18,8 @@ import TeamInformation from "./model/team_information";
 import Session from "./model/sessions";
 import associations from "../src/model/associations.ts";
 import role_router from "../src/router/role";
+import scalesRouter from "./router/scalesRouter";
+// import participantScoreRouter from "./router/participantScoreRouter";
 
 const app = express();
 const port = 3000 || process.env.port;
@@ -35,7 +37,14 @@ app.use("/sessions", sessionRouter);
 
 app.use("/api/teamInformation", teamInformationRouter);
 
-app.use("/estimations", estimationsRouter);
+app.use('/estimations',estimationsRouter);
+app.use('/scales',scalesRouter);
+// app.use('/participantScore',participantScoreRouter);
+
+app.get("/", (req, res) => {
+  res.send("Hello, World hi!");
+});
+
 
 app.use(user_stories_router);
 app.use("/api/calculations", calculationsrouter);
