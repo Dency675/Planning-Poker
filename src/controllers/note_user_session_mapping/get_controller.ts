@@ -1,26 +1,43 @@
 import express from "express";
 import { Request, Response, Router } from "express";
+import associations from "../../model/associations";
 
-note_associations();
+associations();
 //const results = await MainModel.findAll({ include: [ JoinedModel ] }) as Array<MainModel & {JoinedModel: JoinedModel}>;
 import note_user_session_mapping from "../../model/note_user_session_mapping_Model";
 import NoteInformation from "../../model/note_information";
-// import session_participants from '../../model/session_participants';
+import SessionParticipants from "../../model/session_participants";
+import { Op } from "sequelize";
 
-// export const getNoteUserMapping = async (req:Request,res:Response) => {
-//     try{
-
-//         const {session_id , note_id} =req.query.params
 export const getNoteUserMapping = async (req: Request, res: Response) => {
   try {
-    const session_id = "9078110";
-    const note_id = "78789";
-    // const {session_id , note_id} =req.query.params
+    const sessionParticipantId = req.query.session_participant_id;
 
-    //         const value = await note_user_session_mapping.findOne({include:[{model: NoteInformation, attributes:['id'],as:'notes_id'},{model:session_participants ,attributes:['id'], as:'sessions_id'} ]},{where:{[Op.and]:{[sessions_id:session_id],[notes_id:note_id]}});
-    //             else{
-    //                 res.status(404).send('Error!\nNo mapping relations found...');
-    //             }
+    const value = await note_user_session_mapping.findOne({
+      where: [{ session_participant_id: sessionParticipantId }],
+      raw: true,
+      include: [
+        {
+          model: SessionParticipants,
+          attributes: ["name"],
+          required: true,
+        },
+        {
+          model: NoteInformation,
+          attributes: ["note_title", "note_description"],
+          required: true,
+        },
+      ],
+    });
+    if (value) {
+      res
+        .status(200)
+        .send(
+          `Details: \n Name:${value.name}\n Title:${value.note_title} \n Description:\n ${value.note_description}`
+        );
+    } else {
+      res.status(404).send("Error!\nNo mapping relations found...");
+    }
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal server error!");
