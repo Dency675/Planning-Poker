@@ -6,11 +6,11 @@ import calculations from "./calculations";
 import user_story_session_mapping from "./user_story_session_mapping";
 import user_stories from "./user_stories";
 import participant_scores from "./participant_scores";
-
-
+import SessionParticipants from "./session_participants";
+import NoteInformation from "./note_information";
+import note_user_session_mapping from "./note_user_session_mapping_Model";
 
 const associations = async () => {
-
   user_stories.hasMany(user_story_session_mapping, {
     foreignKey: "user_story_id",
   });
@@ -43,7 +43,19 @@ const associations = async () => {
     targetKey: "id",
   });
 
+  SessionParticipants.hasMany(note_user_session_mapping, {
+    foreignKey: "session_participants_id",
+  });
+  note_user_session_mapping.belongsTo(SessionParticipants, {
+    foreignKey: "session_participants_id",
+    targetKey: "id",
+  });
 
+  NoteInformation.hasMany(note_user_session_mapping, { foreignKey: "note_id" });
+  note_user_session_mapping.belongsTo(NoteInformation, {
+    foreignKey: "note_id",
+    targetKey: "id",
+  });
 };
 
 export default associations;
