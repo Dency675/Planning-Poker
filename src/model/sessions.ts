@@ -14,6 +14,7 @@ Session.init(
       autoIncrement: true,
       primaryKey: true,
       allowNull: false,
+      unique: true,
     },
     sessionTitle: {
       type: DataTypes.STRING(255),
@@ -66,6 +67,7 @@ Session.init(
     status: {
       type: DataTypes.ENUM("active", "completed"),
       allowNull: false,
+      defaultValue: Sequelize.literal("active"),
     },
     createdAt: {
       type: DataTypes.DATE,
@@ -91,13 +93,13 @@ TeamInformation.hasMany(Session, { foreignKey: "teamId" });
 Session.belongsTo(TeamInformation, {
   foreignKey: "teamId",
   targetKey: "id",
-  as :'team'
+  as: "team",
 });
 
 Session.belongsTo(UserInformation, {
   foreignKey: "scrumMasterId",
   targetKey: "id",
-  as :'scrumMaster'
+  as: "scrumMaster",
 });
 
 Estimations.hasMany(Session, { foreignKey: "estimationId" });

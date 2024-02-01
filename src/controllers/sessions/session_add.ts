@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import Session from "../../model/sessions";
 
-import SessionParticipants from "../../model/session_participants"
+import SessionParticipants from "../../model/session_participants";
 
 interface SessionPostResponse {
   message: string;
@@ -14,26 +14,24 @@ const SessionPost = async (
 ): Promise<Response<SessionPostResponse>> => {
   try {
     const {
-      session_title,
-      create_date_time,
+      sessionTitle,
+      createDateTime,
       timer,
-      excel_link,
-      team_id,
-      scrum_master_id,
-      estimation_id,
-      calculation_id,
-      status,
+      excelLink,
+      teamId,
+      scrumMasterId,
+      estimationId,
+      calculationId,
     }: Session = req.body;
 
     if (
-      !session_title ||
-      !create_date_time ||
-      !excel_link ||
-      !team_id ||
-      !scrum_master_id ||
-      !estimation_id ||
-      !calculation_id ||
-      !status
+      !sessionTitle ||
+      !createDateTime ||
+      !excelLink ||
+      !teamId ||
+      !scrumMasterId ||
+      !estimationId ||
+      !calculationId
     ) {
       return res
         .status(400)
@@ -42,15 +40,14 @@ const SessionPost = async (
     }
 
     const newSession = await Session.create({
-      session_title,
-      create_date_time,
+      sessionTitle: sessionTitle,
+      createDateTime: createDateTime,
       timer,
-      excel_link,
-      team_id,
-      scrum_master_id,
-      estimation_id,
-      calculation_id,
-      status,
+      excelLink: excelLink,
+      teamId: teamId,
+      scrumMasterId: scrumMasterId,
+      estimationId: estimationId,
+      calculationId: calculationId,
     });
 
     const responseData: SessionPostResponse = {

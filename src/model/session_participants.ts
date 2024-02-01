@@ -1,9 +1,8 @@
-import { DataTypes, Model } from "sequelize";
+import { DataTypes, Model, Sequelize } from "sequelize";
 import sequelize from "../config/sequelize-config";
 import Session from "./sessions";
 import UserInformation from "./user_information";
-import SessionParticipants from "../../types/modelTypes/session_participants"
-
+import SessionParticipants from "../../types/modelTypes/session_participants";
 
 SessionParticipants.init(
   {
@@ -12,7 +11,7 @@ SessionParticipants.init(
       autoIncrement: true,
       primaryKey: true,
     },
-    session_id: {
+    sessionId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -20,7 +19,7 @@ SessionParticipants.init(
         key: "id",
       },
     },
-    user_id: {
+    userId: {
       type: DataTypes.UUID,
       allowNull: false,
       references: {
@@ -28,22 +27,37 @@ SessionParticipants.init(
         key: "id",
       },
     },
-    user_type: {
+    userType: {
       type: DataTypes.ENUM("Guest", "Developer", "Scrum Master"),
       allowNull: false,
+    },
+    isJoined: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: Sequelize.literal("false"),
     },
   },
   {
     sequelize,
     modelName: "SessionParticipants",
-    tableName: "session_participants",
+    underscored: true,
   }
 );
 
-SessionParticipants.belongsTo(Session, { foreignKey: "session_id",targetKey: "id" });
-Session.hasMany(SessionParticipants, { foreignKey: "session_id" ,as:"participants"});
+SessionParticipants.belongsTo(Session, {
+  foreignKey: "sessionId",
+  targetKey: "id",
+});
+Session.hasMany(SessionParticipants, {
+  foreignKey: "sessionId",
+  as: "participants",
+});
 
-SessionParticipants.belongsTo(UserInformation, { foreignKey: "user_id" ,targetKey: "id",as:"user"});
-UserInformation.hasMany(SessionParticipants, { foreignKey: "user_id" });
+SessionParticipants.belongsTo(UserInformation, {
+  foreignKey: "userId",
+  targetKey: "id",
+  as: "user",
+});
+UserInformation.hasMany(SessionParticipants, { foreignKey: "userId" });
 
 export default SessionParticipants;

@@ -33,7 +33,6 @@ NoteInformation.init(
   {
     sequelize,
     modelName: "noteInformation",
-    tableName: "noteInformation",
     underscored: true,
   }
 );
