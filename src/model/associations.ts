@@ -44,16 +44,16 @@ const associations = async () => {
   });
 
   SessionParticipants.hasMany(note_user_session_mapping, {
-    foreignKey: "session_participants_id",
+    foreignKey: "sessionParticipantID",
   });
   note_user_session_mapping.belongsTo(SessionParticipants, {
-    foreignKey: "session_participants_id",
+    foreignKey: "sessionParticipantID",
     targetKey: "id",
   });
 
-  NoteInformation.hasMany(note_user_session_mapping, { foreignKey: "note_id" });
+  NoteInformation.hasMany(note_user_session_mapping, { foreignKey: "noteID" });
   note_user_session_mapping.belongsTo(NoteInformation, {
-    foreignKey: "note_id",
+    foreignKey: "noteID",
     targetKey: "id",
   });
 };

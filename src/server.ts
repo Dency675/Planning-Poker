@@ -19,6 +19,7 @@ import Session from "./model/sessions";
 import associations from "../src/model/associations.ts";
 import role_router from "../src/router/role";
 import scalesRouter from "./router/scalesRouter";
+import note_user_map_router from "./router/note_user_mapping.ts";
 // import participantScoreRouter from "./router/participantScoreRouter";
 
 const app = express();
@@ -32,19 +33,22 @@ app.use(express.urlencoded({ extended: true })); //to accept the encoded url
 app.use(express.json());
 
 app.use("/note", noteInformationRouter);
+app.use("/noteuser", note_user_map_router);
 
 app.use("/sessions", sessionRouter);
 
 app.use("/api/teamInformation", teamInformationRouter);
 
-app.use('/estimations',estimationsRouter);
-app.use('/scales',scalesRouter);
+app.use("/estimations", estimationsRouter);
+app.use("/scales", scalesRouter);
 // app.use('/participantScore',participantScoreRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello, World hi!");
 });
-
+//noteUserSessionMappingID int AI PK
+// noteID int
+// sessionParticipantID
 
 app.use(user_stories_router);
 app.use("/api/calculations", calculationsrouter);
@@ -57,6 +61,8 @@ app.use(user_story_mapping_router);
 
 app.use(role_router);
 app.use(participant_scores_router);
+
+app.use(note_user_map_router);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
