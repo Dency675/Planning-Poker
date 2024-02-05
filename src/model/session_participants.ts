@@ -2,8 +2,7 @@ import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/sequelize-config";
 import Session from "./sessions";
 import UserInformation from "./user_information";
-
-class SessionParticipants extends Model {}
+import SessionParticipants from "../../types/modelTypes/session_participants";
 
 SessionParticipants.init(
   {
@@ -11,6 +10,8 @@ SessionParticipants.init(
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
+      unique: true,
+      allowNull: false,
     },
     session_id: {
       type: DataTypes.INTEGER,
@@ -40,10 +41,16 @@ SessionParticipants.init(
   }
 );
 
-SessionParticipants.belongsTo(Session, { foreignKey: "session_id",targetKey: "id" });
+SessionParticipants.belongsTo(Session, {
+  foreignKey: "session_id",
+  targetKey: "id",
+});
 Session.hasMany(SessionParticipants, { foreignKey: "session_id" });
 
-SessionParticipants.belongsTo(UserInformation, { foreignKey: "user_id" ,targetKey: "id"});
+SessionParticipants.belongsTo(UserInformation, {
+  foreignKey: "user_id",
+  targetKey: "id",
+});
 UserInformation.hasMany(SessionParticipants, { foreignKey: "user_id" });
 
 export default SessionParticipants;
